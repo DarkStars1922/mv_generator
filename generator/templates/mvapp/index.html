@@ -106,6 +106,22 @@
       border: 1px solid rgba(255, 255, 255, 0.3);
       color: white;
     }
+
+    .video-wrapper {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+      color: white;
+    }
+
+    .logo-img {
+      max-height: 40px;
+      /* 或 50px，根据导航栏高度调整 */
+      height: auto;
+      object-fit: contain;
+    }
   </style>
 </head>
 
@@ -113,7 +129,11 @@
   <!--导航-->
   <nav class="navbar navbar-expand-lg bg-body-tertiary custom-navbar fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">毕业MV创作平台</a>
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="../../static/assets/images/logo.jpg" alt="Logo" class="logo-img me-2">
+        毕业MV创作平台
+      </a>
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -162,8 +182,21 @@
     </button>
   </div>
 
+  <!-- 视频展示区域 -->
+  <div class="container my-5">
+    <div class="video-wrapper p-4">
+      <div class="ratio ratio-16x9">
+        <video controls preload="metadata">
+          <source src="../../static/assets/videos/display.mp4" type="video/mp4" autoplay>
+          您的浏览器不支持 HTML5 视频播放。
+        </video>
+      </div>
+    </div>
+  </div>
+
   <div class="hero" id="mv-section">
     <h1>生成你的毕业 MV</h1>
+    <h1>为残障儿童献出你的爱心</h1>
     <p>AI 留住最珍贵的青春记忆</p>
     <p>AI 为残障儿童带去温暖</p>
   </div>

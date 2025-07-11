@@ -156,12 +156,63 @@
                 top: 15px;
             }
         }
+
+        .donation-card {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(115, 0, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .donation-card-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .donation-card-text {
+            padding: 24px 30px;
+            font-size: 1.2rem;
+            color: #ffffff;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .donation-card-text strong {
+            font-size: 1.3rem;
+            color: #f3d9ff;
+        }
+
+        @media (max-width: 768px) {
+            .donation-card-text {
+                font-size: 1rem;
+                padding: 16px;
+            }
+
+            .donation-card-text strong {
+                font-size: 1.1rem;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!-- 感谢图片与文案模块 -->
+    <div class="donation-card mb-5">
+        <img src="../../static/assets/images/感谢img.jpg" alt="感谢捐赠" class="donation-card-image">
+        <div class="donation-card-text">
+            <p><strong>你的一点光，成了他们前行路上的太阳。</strong><br>感谢每一位爱心人士的捐助，是你们点亮了孩子们的世界。</p>
+        </div>
+    </div>
+
+
     <h1>您的 MV 已生成</h1>
-    <p class="subtitle">愿你记住这段闪闪发光的青春</p>
+    <p class="subtitle"><strong>愿你记住这段闪闪发光的青春，也不要忘记那些需要帮助的人</strong></p>
 
     <div class="video-wrapper">
         <video id="mvPlayer" controls>
@@ -176,7 +227,7 @@
     </div>
 
     <div class="footer">
-        <p>© 2025 毕业季 | 毕业MV智能创作平台</p>
+        <p>© 2025 毕业季 | 毕业MV智能创作平台 & 残障儿童帮扶平台</p>
     </div>
 
     <!-- 弹窗提示 -->
