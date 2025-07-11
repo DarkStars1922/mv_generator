@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>毕业MV智能创作平台</title>
+  <link rel="stylesheet" href="./Bootstrap/css/bootstrap.min.css">
+  <style>
+    /* 背景图 */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url("./assets/images/bk.jpg") center/cover no-repeat;
+      z-index: -1;
+      filter: brightness(0.7);
+    }
+
+    .hero {
+      padding: 100px 20px 50px;
+      color: white;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      line-height: 20px;
+    }
+
+    .carousel-container {
+      font-weight: 700;
+      max-width: 900px;
+      margin: 0 auto 60px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .upload-section {
+      background-color: rgba(131, 28, 249, 0.733);
+      padding: 40px;
+      border-radius: 15px;
+      max-width: 900px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      text-align: center;
+      color: #ffffff;
+      margin-top: 60px;
+      padding: 20px;
+    }
+
+    input[type="file"] {
+      margin-bottom: 20px;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+      top: 38%;
+      width: 50px;
+      height: 50px;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 50%;
+    }
+
+    .carousel-control-prev {
+      left: 250px;
+    }
+
+    .carousel-control-next {
+      right: 250px;
+    }
+
+
+    nav.bg-body-tertiary {
+      background-color: #7300ff68 !important;
+    }
+
+    .custom-navbar .nav-link {
+      color: #ffffff;
+    }
+
+    .custom-navbar .navbar-brand {
+      color: #ffffff;
+    }
+
+    body {
+      padding-top: 70px;
+    }
+
+    .upload-section {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <!--导航-->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary custom-navbar fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">毕业MV创作平台</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">首页</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#mv-section">MV创作</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 轮播图 -->
+  <div class="carousel-container">
+    <div id="campusCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#campusCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+          aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#campusCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#campusCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="./assets/images/平台bk.jpg" class="d-block w-100" alt="校园照片1">
+        </div>
+        <div class="carousel-item">
+          <img src="./assets/images/文字bk.jpg" class="d-block w-100" alt="校园照片2">
+        </div>
+        <div class="carousel-item">
+          <img src="./assets/images/捐款bk.jpg" class="d-block w-100" alt="校园照片3">
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#campusCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#campusCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div class="hero" id="mv-section">
+    <h1>生成你的毕业 MV</h1>
+    <p>AI 留住最珍贵的青春记忆</p>
+    <p>AI 为残障儿童带去温暖</p>
+  </div>
+
+
+  <!-- 上传区 -->
+  <div class="upload-section mt-5">
+    <h3 class="mb-4 text-center">🌟上传素材</h3>
+    <form id="uploadForm">
+      <!-- 上传照片 -->
+      <div class="mb-4">
+        <label for="photoUpload" class="form-label fw-bold">上传照片（支持多张）</label>
+        <input class="form-control" type="file" id="photoUpload" multiple accept="image/*">
+      </div>
+
+      <!-- 灵感输入 -->
+      <div class="mb-4">
+        <label for="inspirationInput" class="form-label"><strong>你的灵感</strong></label>
+        <textarea class="form-control" id="inspirationInput" placeholder="请将你的灵感提供给 AI，例如：我们的友情像夏天的微风..."></textarea>
+      </div>
+
+
+      <!-- 提交按钮 -->
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary btn-lg">🎬 立即生成 MV</button>
+      </div>
+
+      <!-- 替换 alert 为这个提示框 -->
+      <div id="loadingMessage" class="text-center text-white fw-bold" style="margin-top: 20px; display: none;">
+        <div class="spinner-border text-light" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">AI 正在为你生成 MV，请稍候...</p>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- 页脚 -->
+  <footer>
+    <p>© 2025 毕业季 | 毕业MV智能创作平台 & 残障儿童帮扶平台</p>
+  </footer>
+
+  <script src="./Bootstrap/js/bootstrap.min.js"></script>
+
+  <!-- 生成 MV -->
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', function (e) {
+      e.preventDefault(); // 阻止默认表单提交
+
+      // “正在生成”提示
+      document.getElementById('loadingMessage').style.display = 'block';
+
+
+      // 模拟生成过程（3秒后跳转）
+      setTimeout(function () {
+        window.location.href = "create.html";
+      }, 3000);
+    });
+  </script>
+
+</body>
+
+</html>
