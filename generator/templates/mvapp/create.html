@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>MV生成完成</title>
+    <link rel="stylesheet" href="../../static/Bootstrap/css/bootstrap.min.css" />
+    <style>
+        body {
+            background: linear-gradient(120deg, #000018, #1a0033);
+            color: white;
+            text-align: center;
+            padding: 80px 20px 40px;
+            font-family: 'Segoe UI', sans-serif;
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #e4cbff, #d3b3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            color: #cccccc;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .video-wrapper {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 0 25px rgba(115, 0, 255, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        video {
+            max-width: 100%;
+            border: 4px solid #7300ff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px #7300ff88;
+        }
+
+        .btn-group {
+            margin-top: 30px;
+        }
+
+        .btn {
+            margin: 0 10px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+        }
+
+        .footer {
+            margin-top: 60px;
+            color: #bbb;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 弹窗提示 */
+        .warm-popup {
+            position: fixed;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            padding: 20px 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px #9b59b6cc;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            z-index: 9999;
+            opacity: 0;
+            animation: fadeInDown 1s forwards;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .warm-popup .close-btn {
+            cursor: pointer;
+            font-weight: 900;
+            font-size: 1.6rem;
+            user-select: none;
+            padding: 0 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            color: #fff;
+            transition: background 0.3s ease;
+        }
+
+        .warm-popup .close-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* 新增关闭动画 */
+        @keyframes fadeOutScale {
+            0% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px) scale(0.8);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                display: block;
+                width: 80%;
+                margin: 10px auto;
+            }
+
+            .warm-popup {
+                font-size: 1.2rem;
+                padding: 16px 30px;
+                border-radius: 15px;
+                top: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>您的 MV 已生成</h1>
+    <p class="subtitle">愿你记住这段闪闪发光的青春</p>
+
+    <div class="video-wrapper">
+        <video id="mvPlayer" controls>
+            <source src="../../static/assets/videos/MV_test.mp4" type="video/mp4" />
+            您的浏览器不支持视频播放。
+        </video>
+
+        <div class="btn-group mt-4">
+            <a href="{% url 'home' %}" class="btn btn-outline-light">返回首页</a>
+            <a href="#" onclick="downloadMV()" class="btn btn-primary">下载 MV</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 毕业季 | 毕业MV智能创作平台</p>
+    </div>
+
+    <!-- 弹窗提示 -->
+    <div class="warm-popup" id="warmPopup">
+        <span>您已经为残障儿童贡献您的温暖 ❤️ 祝您一切顺利！</span>
+        <span class="close-btn" id="closePopup">&times;</span>
+    </div>
+
+    <script>
+        function downloadMV() {
+            const link = document.createElement('a');
+            link.href = '../../static/assets/videos/MV_test.mp4';
+            link.download = '毕业MV.mp4';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // 优化关闭弹窗函数，触发动画后再隐藏
+        document.getElementById('closePopup').addEventListener('click', () => {
+            const popup = document.getElementById('warmPopup');
+            popup.style.animation = 'fadeOutScale 0.5s forwards';
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 500);
+        });
+
+        // 页面加载后自动隐藏弹窗也用同样动画
+        setTimeout(() => {
+            const popup = document.getElementById('warmPopup');
+            popup.style.animation = 'fadeOutScale 0.5s forwards';
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 500);
+        }, 8000);
+    </script>
+</body>
+
+</html>
